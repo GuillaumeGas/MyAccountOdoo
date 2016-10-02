@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <menuitem id="main_account_menu" name="MyAccount"/>
+    <menuitem id="account_menu_account" name="MyAccount" parent="main_account_menu"/>
+
+    <menuitem id="account_menu" name="Accounts" parent="account_menu_account" action="account_action"/>
+    <menuitem id="transaction_menu" name="Transactions" parent="account_menu_account" action="transaction_action"/>
+  </data>
+</openerp>

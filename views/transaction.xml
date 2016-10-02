@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+
+    <!-- Transaction - Form view -->
+    <record model="ir.ui.view" id="transaction_form_view">
+      <field name="name">transaction.form</field>
+      <field name="model">account.transaction</field>
+      <field name="arch" type="xml">
+	<form string="Transaction">
+	  <sheet>
+	    <group>
+	      <field name="account_id"/>
+	      <field name="name"/>
+	    </group>
+	    <group>
+	      <field name="value"/>
+	      <field name="date"/>
+	      <field name="validated"/>
+	    </group>
+	  </sheet>
+	</form>
+      </field>
+    </record>
+
+    <!-- Transaction - Tree view -->
+    <record model="ir.ui.view" id="transaction_tree_view">
+      <field name="name">transaction.tree</field>
+      <field name="model">account.transaction</field>
+      <field name="arch" type="xml">
+	<tree string="Transactions">
+	  <field name="name"/>
+	  <field name="date"/>
+	  <field name="account_id"/>
+	  <field name="value"/>
+	</tree>
+      </field>
+    </record>
+
+    <!-- Transaction - Action -->
+    <record model="ir.actions.act_window" id="transaction_action">
+      <field name="name">Transaction</field>
+      <field name="res_model">account.transaction</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+  </data>
+</openerp>
