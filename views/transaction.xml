@@ -28,10 +28,11 @@
       <field name="name">transaction.tree</field>
       <field name="model">account.transaction</field>
       <field name="arch" type="xml">
-	<tree string="Transactions">
+	<tree string="Transactions" colors="orange:validated==False;red:value &lt; 0;green:value>0" default_order="date">
 	  <field name="name"/>
 	  <field name="date"/>
 	  <field name="account_id"/>
+	  <field name="validated" invisible="True"/>
 	  <field name="value"/>
 	</tree>
       </field>
