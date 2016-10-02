@@ -9,11 +9,13 @@
       <field name="arch" type="xml">
 	<form string="Account">
 	  <sheet>
-	    <field name="name"/>
-	    <field name="value" readonly="True"/>
-	  </sheet>
-	  <sheet>
-	    <field name="transaction_ids"/>
+	    <group>
+	      <field name="name"/>
+	      <field name="value" readonly="True"/>
+	    </group>
+	    <group>
+	      <field name="transaction_ids"/>
+	    </group>
 	  </sheet>
 	</form>
       </field>
