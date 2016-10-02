@@ -20,14 +20,18 @@ class Transaction (models.Model):
     def create(self, values):
         if (values['validated']):
             account = self.env['account.account'].search([('id', '=', values['account_id'])])
-            account.value -= values['value']
+            account.value += values['value']
         return super(Transaction, self).create(values)
 
-    @api.model
+    @api.multi
     def write(self, values):
-        if (values['validated']):
-            account = self.env['account.account'].search([('id', '=', values['account_id'])])
-            account.value -= values['value']
+        if ('validated' in values):
+            if (values['validated']):
+                account = self.env['account.account'].search([('id', '=', self.account_id.id)])
+                value = self.value
+                if ('value' in values):
+                    value = values['value']
+                account.value += value
         return super(Transaction, self).write(values)
 
     @api.onchange('date')
