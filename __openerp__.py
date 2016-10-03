@@ -11,6 +11,7 @@
     'data': [
         'views/account.xml',
         'views/transaction.xml',
+        'views/category.xml',
         'views/menu.xml',
     ],
     'demo': [

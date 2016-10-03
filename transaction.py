@@ -15,6 +15,8 @@ class Transaction (models.Model):
 
     account_id = fields.Many2one('account.account', string="Account",
                                  required=True, ondelete='cascade')
+    category_id = fields.Many2one('account.category', string="Category",
+                                  required=True, ondelete='set null')
 
     @api.model
     def create(self, values):

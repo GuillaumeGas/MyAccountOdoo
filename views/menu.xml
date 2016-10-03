@@ -6,5 +6,6 @@
 
     <menuitem id="account_menu" name="Accounts" parent="account_menu_account" action="account_action"/>
     <menuitem id="transaction_menu" name="Transactions" parent="account_menu_account" action="transaction_action"/>
+    <menuitem id="category_menu" name="Category" parent="account_menu_account" action="category_action"/>
   </data>
 </openerp>
