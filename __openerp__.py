@@ -12,6 +12,7 @@
         'views/account.xml',
         'views/transaction.xml',
         'views/category.xml',
+        'views/prediction.xml',
         'views/menu.xml',
     ],
     'demo': [

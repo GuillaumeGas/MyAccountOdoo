@@ -33,23 +33,11 @@
       </field>
     </record>
 
-    <!-- Account - Calendar view -->
-    <record model="ir.ui.view" id="account_calendar">
-      <field name="name">account.calendar</field>
-      <field name="model">account.account</field>
-      <field name="arch" type="xml">
-	<calendar string="Previsions" date_start="start_date" date_stop="end_date">
-	  <field name="transaction_ids"/>
-	</calendar>
-      </field>
-    </record>
-
     <!-- Account - Action -->
     <record model="ir.actions.act_window" id="account_action">
       <field name="name">Account</field>
       <field name="res_model">account.account</field>
       <field name="view_type">form</field>
-      <field name="view_mode">tree,form,calendar</field>
     </record>
 
   </data>
