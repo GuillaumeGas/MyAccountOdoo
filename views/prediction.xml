@@ -7,10 +7,11 @@
       <field name="name">prediction.calendar</field>
       <field name="model">account.prediction</field>
       <field name="arch" type="xml">
-	<calendar string="Previsions" date_start="date" color="validated">
+	<calendar string="Previsions" date_start="date" color="account_id">
 	  <field name="date" invisible="True"/>
+	  <field name="account_id" invisible="True"/>
 	  <field name="name"/>
-	  <field name="account_id"/>
+	  <field name="value"/>
 	  <field name="predict_value"/>
 	</calendar>
       </field>
