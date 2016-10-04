@@ -20,7 +20,9 @@ class Prediction (models.Model):
             invalidated_transac = self.env['account.prediction'].search(
                 [('validated', '=', False)])
             for transac in invalidated_transac:
-                if (fields.Date.from_string(transac.date) < fields.Date.from_string(r.date)):
-                    r.predict_value += transac.value
+                t_date = fields.Date.from_string(transac.date)
+                r_date = fields.Date.from_string(r.date)
+                if (t_date <= r_date and transac.id != r.id):
+                    r.predict_value = round(r.predict_value + transac.value, 2)
             if (not r.validated):
-                r.predict_value += r.value
+                r.predict_value = round(r.predict_value + r.value, 2)
