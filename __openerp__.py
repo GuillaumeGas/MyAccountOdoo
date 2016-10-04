@@ -7,8 +7,11 @@
     'website': 'https://guillaume.gas28.net',
     'depends': [
         'base',
+        'email_template',
     ],
     'data': [
+        'data/email_template.xml',
+        'data/cron.xml',
         'views/account.xml',
         'views/transaction.xml',
         'views/category.xml',

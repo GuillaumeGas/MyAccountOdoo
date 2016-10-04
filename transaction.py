@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from openerp import models, fields, api
+from urlparse import urljoin
+from urllib import urlencode
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -23,7 +25,10 @@ class Transaction (models.Model):
         if (values['validated']):
             account = self.env['account.account'].search([('id', '=', values['account_id'])])
             account.value += values['value']
-        return super(Transaction, self).create(values)
+        res = super(Transaction, self).create(values)
+        self.env['account.prediction'].create(
+            {'transaction_id': res.id, 'predict_value': res.value})
+        return res
 
     @api.multi
     def write(self, values):
@@ -45,3 +50,47 @@ class Transaction (models.Model):
             self.validated = True
         else:
             self.validated = False
+
+    @api.multi
+    def get_url(self):
+        url_base = self.env['ir.config_parameter'].get_param('web.base.url')
+        imd = self.env['ir.model.data']
+        menu_id = imd.get_object_reference('MyAccountOdoo', 'transaction_menu')
+        action_id = imd.get_object_reference('MyAccountOdoo', 'transaction_action')
+
+        if menu_id:
+            menu_id = menu_id[1]
+        if action_id:
+            action_id = action_id[1]
+
+        args = {}
+        args['id'] = self.id
+        args['view_type'] = 'form'
+        args['model'] = 'account.transaction'
+        args['menu_id'] = menu_id
+        args['action'] = action_id
+
+        res = urljoin(url_base, "web#%s" % urlencode(args))
+        return res
+
+    @api.model
+    def cron_mail(self):
+        nb_not_validated = len(self.env['account.transaction'].search(
+            [('validated', '=', 'False')]))
+
+        if nb_not_validated > 0:
+            template = self.env['ir.model.data'].get_object(
+                'MyAccountOdoo', 'email_myaccount')
+
+            # tmp !
+            template.email_to = "guillaume@gas-ntic.fr"
+            template.send_mail(res_id=self.env['account.transaction'].search([], limit=1).id)
+
+    def get_list_invalidated(self):
+        invalidated_list = self.env['account.transaction'].search([('validated', '=', False)])
+        res_list = []
+        today = fields.Date.today()
+        for transac in invalidated_list:
+            if (fields.Date.from_string(transac.date) == fields.Date.from_string(today)):
+                res_list.append(transac)
+        return res_list

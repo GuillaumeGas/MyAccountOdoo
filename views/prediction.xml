@@ -7,40 +7,12 @@
       <field name="name">prediction.calendar</field>
       <field name="model">account.prediction</field>
       <field name="arch" type="xml">
-	<calendar string="Previsions" date_start="start_date" color="category_id">
-	  <field name="start_date" invisible="True"/>
+	<calendar string="Previsions" date_start="date" color="validated">
+	  <field name="date" invisible="True"/>
+	  <field name="name"/>
+	  <field name="account_id"/>
 	  <field name="predict_value"/>
-	  <field name="category_id"/>
 	</calendar>
-      </field>
-    </record>
-
-    <!-- Prediction - Tree view -->
-    <record model="ir.ui.view" id="prediction_tree_view">
-      <field name="name">prediction.tree</field>
-      <field name="model">account.prediction</field>
-      <field name="arch" type="xml">
-	<tree string="Predictions">
-	  <field name="predict_value"/>
-	</tree>
-      </field>
-    </record>
-
-    <!-- Prediction - Form view -->
-    <record model="ir.ui.view" id="prediction_form_view">
-      <field name="name">prediction.form</field>
-      <field name="model">account.prediction</field>
-      <field name="arch" type="xml">
-	<form string="Prediction">
-	  <sheet>
-	    <group>
-	      <field name="name"/>
-	      <field name="value"/>
-	      <field name="account_id"/>
-	      <field name="category_id"/>
-	    </group>
-	  </sheet>
-	</form>
       </field>
     </record>
 
@@ -49,7 +21,7 @@
       <field name="name">Prediction</field>
       <field name="res_model">account.prediction</field>
       <field name="view_type">form</field>
-      <field name="view_mode">tree,form,calendar</field>
+      <field name="view_mode">calendar</field>
     </record>
 
   </data>

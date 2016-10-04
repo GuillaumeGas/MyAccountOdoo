@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="email_myaccount" model="email.template">
+      <field name="name">Email MyAccount</field>
+      <field name="email_from">noreply@gas-ntic.fr</field>
+      <field name="subject">Transactions to validate</field>
+      <field name="model_id" ref="MyAccountOdoo.model_account_transaction"/>
+      <field name="auto_delete" eval="False"/>
+      <field name="lang">${object.lang}</field>
+      <field name="body_html"><![CDATA[
+      You have some invalidated transactions :<br>
+      <ul>
+      % for transac in object.get_list_invalidated()
+      <li><a href="${transac.get_url()}">(${transac.date}) ${transac.name} : ${transac.value}</a></li>
+      % endfor
+      </ul>
+      ]]></field>
+    </record>
+  </data>
+</openerp>
