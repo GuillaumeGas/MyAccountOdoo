@@ -9,6 +9,7 @@ _logger = logging.getLogger(__name__)
 
 class Transaction (models.Model):
     _name = 'account.transaction'
+    _order = 'date'
 
     name = fields.Char(string="Name", required=True)
     value = fields.Float(string="Value", required=True)
