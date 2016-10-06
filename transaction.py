@@ -40,6 +40,12 @@ class Transaction (models.Model):
                 if ('value' in values):
                     value = values['value']
                 account.value += value
+        if ('value' in values):
+            if (('validated' in values and values['validated']) or
+                    ('validated' not in values and self.validated)):
+                transaction = self.env['account.transaction'].search([('id', '=', self.id)])
+                self.account_id.value -= transaction.value
+                self.account_id.value += values['value']
         return super(Transaction, self).write(values)
 
     @api.onchange('date')
