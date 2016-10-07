@@ -44,8 +44,9 @@
       <field name="name">transaction.graph</field>
       <field name="model">account.transaction</field>
       <field name="arch" type="xml">
-	<graph string="Transactions / Category" type="pie">
+	<graph string="Transactions / Category" type="bar">
 	  <field name="category_id"/>
+	  <field name="value" type="measure"/>
 	</graph>
       </field>
     </record>
