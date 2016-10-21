@@ -18,6 +18,7 @@ class Transaction (models.Model):
 
     account_id = fields.Many2one('account.account', string="Account",
                                  required=True, ondelete='cascade')
+    account_statement_id = fields.Many2one('account.account_statement')
     category_id = fields.Many2one('account.category', string="Category",
                                   required=True, ondelete='set null')
 
@@ -82,8 +83,8 @@ class Transaction (models.Model):
 
     @api.model
     def cron_mail(self):
-        nb_not_validated = len(self.env['account.transaction'].search(
-            [('validated', '=', 'False')]))
+        not_validated = self.get_list_invalidated()
+        nb_not_validated = len(not_validated)
 
         if nb_not_validated > 0:
             template = self.env['ir.model.data'].get_object(
@@ -98,6 +99,6 @@ class Transaction (models.Model):
         res_list = []
         today = fields.Date.today()
         for transac in invalidated_list:
-            if (fields.Date.from_string(transac.date) == fields.Date.from_string(today)):
+            if (fields.Date.from_string(transac.date) <= fields.Date.from_string(today)):
                 res_list.append(transac)
         return res_list

@@ -10,6 +10,7 @@
 	<form string="Transaction">
 	  <sheet>
 	    <group>
+	      <field name="account_statement_id"/>
 	      <field name="account_id"/>
 	      <field name="name"/>
 	      <field name="value"/>
@@ -53,6 +54,8 @@
 	  <filter name="filter_date" string="Transactions on current month"
 		  domain="[('date','>=',context_today().strftime('%%Y-%%m-01')),
 			  ('date','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01'))]"/>
+	  <!-- <filter name="filter_account" string="Transactions of main account" -->
+	  <!-- 	  domain="[('account_id.main_account', '=' True)]"/> -->
 	</search>
       </field>
     </record>

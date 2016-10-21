@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <!-- Bank statement - Form view -->
+    <record model="ir.ui.view" id="b_statement_form_view">
+      <field name="name">bank_statement.form</field>
+      <field name="model">account.bank_statement</field>
+      <field name="arch" type="xml">
+	<form string="Bank statement">
+	  <sheet>
+	    <group>
+	      <field name="name"/>
+	    </group>
+	    <group>
+	      <field name="account_statement_ids">
+		<tree string="Account statements">
+		  <button type="object" name="open_account_statement" string="Open"/>
+		  <field name="account_id"/>
+		  <field name="name"/>
+		</tree>
+	      </field>
+	    </group>
+	  </sheet>
+	</form>
+      </field>
+    </record>
+
+    <!-- Bank statement - Tree view -->
+    <record model="ir.ui.view" id="b_statement_tree_view">
+      <field name="name">bank_statement.tree</field>
+      <field name="model">account.bank_statement</field>
+      <field name="arch" type="xml">
+	<tree string="Bank statements">
+	  <field name="name"/>
+	</tree>
+      </field>
+    </record>
+
+    <!-- Bank statement - Action -->
+    <record model="ir.actions.act_window" id="b_statement_action">
+      <field name="name">Bank Statement</field>
+      <field name="res_model">account.bank_statement</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+  </data>
+</openerp>
