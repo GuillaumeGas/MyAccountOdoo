@@ -32,6 +32,7 @@
       <field name="arch" type="xml">
 	<tree string="Transactions" colors="orange:validated==False;red:value &lt; 0;green:value>0" default_order="date">
 	  <field name="name"/>
+	  <field name="category_id"/>
 	  <field name="date"/>
 	  <field name="account_id"/>
 	  <field name="validated" invisible="True"/>
