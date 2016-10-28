@@ -20,7 +20,7 @@ class AccountStatement(models.Model):
         return {
             'type': 'ir.actions.act_window',
             'view_type': 'form',
-            'view_mode': 'tree',
+            'view_mode': 'tree,form',
             'res_model': 'account.transaction',
             'target': 'current',
             'domain': [('account_statement_id', '=', self.id)]

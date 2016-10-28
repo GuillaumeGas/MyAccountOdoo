@@ -24,30 +24,10 @@ class Transaction (models.Model):
 
     @api.model
     def create(self, values):
-        if (values['validated']):
-            account = self.env['account.account'].search([('id', '=', values['account_id'])])
-            account.value += values['value']
         res = super(Transaction, self).create(values)
         self.env['account.prediction'].create(
-            {'transaction_id': res.id, 'predict_value': res.value})
+            {'transaction_id': res.id})
         return res
-
-    @api.multi
-    def write(self, values):
-        if ('validated' in values):
-            if (values['validated']):
-                account = self.env['account.account'].search([('id', '=', self.account_id.id)])
-                value = self.value
-                if ('value' in values):
-                    value = values['value']
-                account.value += value
-        if ('value' in values):
-            if (('validated' in values and values['validated']) or
-                    ('validated' not in values and self.validated)):
-                transaction = self.env['account.transaction'].search([('id', '=', self.id)])
-                self.account_id.value -= transaction.value
-                self.account_id.value += values['value']
-        return super(Transaction, self).write(values)
 
     @api.onchange('date')
     def _change_date(self):

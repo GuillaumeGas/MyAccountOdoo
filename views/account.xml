@@ -11,11 +11,12 @@
 	  <sheet>
 	    <group>
 	      <field name="name"/>
+	      <field name="bank_id"/>
 	      <field name="value"/>
 	      <field name="main_account"/>
 	    </group>
 	    <group>
-	      <field name="transaction_ids"/>
+	      <field name="transaction_ids" readonly="True"/>
 	    </group>
 	  </sheet>
 	</form>
@@ -29,6 +30,7 @@
       <field name="arch" type="xml">
 	<tree string="Accounts" colors="red:value &lt; 0; green:value>0">
 	  <field name="name"/>
+	  <field name="bank_id"/>
 	  <field name="main_account"/>
 	  <field name="value"/>
 	</tree>

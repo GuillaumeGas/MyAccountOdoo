@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from . import bank  # noqa
 from . import account  # noqa
 from . import account_statement  # noqa
 from . import bank_statement  # noqa

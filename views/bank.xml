@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+
+    <!-- Bank - Form view -->
+    <record model="ir.ui.view" id="bank_form_view">
+      <field name="name">bank.form</field>
+      <field name="model">account.bank</field>
+      <field name="arch" type="xml">
+	<form string="Bank">
+	  <sheet>
+	    <group>
+	      <field name="name"/>
+	      <field name="account_ids" readonly="True"/>
+	    </group>
+	  </sheet>
+	</form>
+      </field>
+    </record>
+
+    <!-- Bank - Tree view -->
+    <record model="ir.ui.view" id="bank_tree_view">
+      <field name="name">bank.tree</field>
+      <field name="model">account.bank</field>
+      <field name="arch" type="xml">
+	<tree string="Banks" colors="red:value &lt; 0; green:value>0">
+	  <field name="name"/>
+	  <field name="value"/>
+	</tree>
+      </field>
+    </record>
+
+    <!-- Bank - Action -->
+    <record model="ir.actions.act_window" id="bank_action">
+      <field name="name">Bank</field>
+      <field name="res_model">account.bank</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+  </data>
+</openerp>

@@ -12,6 +12,7 @@
     'data': [
         'data/email_template.xml',
         'data/cron.xml',
+        'views/bank.xml',
         'views/account.xml',
         'views/transaction.xml',
         'views/category.xml',
