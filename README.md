@@ -1,37 +1,19 @@
-## Welcome to GitHub Pages
+## MyAccountOdoo
 
-You can use the [editor on GitHub](https://github.com/GuillaumeGas/MyAccountOdoo/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+# Description
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+The main goal of this Odoo module is to show the status of my account at the end of the month, giving a list of expenses (planned or done).
+The feature I prefer (and it's also the reason why I created this module) is the calendar view : it is designed for showing you all the expenses on the current month, and for one expense, the account's total at this date. It allows you to know if you will be able to eat something else than pasta the next week and you won't be ruined...
 
-### Markdown
+# Features
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+* List of accounts
+* List of expenses for an account
+* An expense can be planned and won't be counted in the calculation of the account's total
+* Calendar view to see all the expenses on the current month, and for one expense, the account's total at this date is shown
+* A bar chart to see in which category you spend your money
 
-```markdown
-Syntax highlighted code block
+# Todo
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/GuillaumeGas/MyAccountOdoo/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+* I don't handle very well different accounts
+* The bar is not perfect
