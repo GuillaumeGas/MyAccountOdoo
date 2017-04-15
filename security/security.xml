@@ -1,0 +1,64 @@
+<openerp>
+	<data>
+		<!-- Group -->
+		<record id="account_group" model="res.groups">
+			<field name="name">MyAccount Groupe</field>
+		</record>
+
+		<!-- RULE Account model -->
+		<record id="user_account" model="ir.rule">
+			<field name="name">The user can read only his own accounts</field>
+			<field name="model_id" ref="model_account_account"/>
+			<field name="groups" eval="[(4, ref('MyAccountOdoo.account_group'))]"/>
+			<field name="perm_read" eval="1"/>
+			<field name="perm_write" eval="1"/>
+			<field name="perm_create" eval="0"/>
+			<field name="perm_unlink" eval="1"/>
+			<field name="domain_force">
+				[('create_uid','=',user.id)]
+			</field>
+		</record>
+
+		<!-- RULE Transaction model -->
+		<record id="user_transaction" model="ir.rule">
+			<field name="name">The user can read only his own transactions</field>
+			<field name="model_id" ref="model_account_transaction"/>
+			<field name="groups" eval="[(4, ref('MyAccountOdoo.account_group'))]"/>
+			<field name="perm_read" eval="1"/>
+			<field name="perm_write" eval="1"/>
+			<field name="perm_create" eval="0"/>
+			<field name="perm_unlink" eval="1"/>
+			<field name="domain_force">
+				[('create_uid','=',user.id)]
+			</field>
+		</record>
+
+		<!-- RULE Category model -->
+		<record id="user_category" model="ir.rule">
+			<field name="name">The user can read only his own categories</field>
+			<field name="model_id" ref="model_account_category"/>
+			<field name="groups" eval="[(4, ref('MyAccountOdoo.account_group'))]"/>
+			<field name="perm_read" eval="1"/>
+			<field name="perm_write" eval="1"/>
+			<field name="perm_create" eval="0"/>
+			<field name="perm_unlink" eval="1"/>
+			<field name="domain_force">
+				[('create_uid','=',user.id)]
+			</field>
+		</record>
+
+		<!-- RULE Prediction model -->
+		<record id="user_prediction" model="ir.rule">
+			<field name="name">The user can read only his own prediction</field>
+			<field name="model_id" ref="model_account_prediction"/>
+			<field name="groups" eval="[(4, ref('MyAccountOdoo.account_group'))]"/>
+			<field name="perm_read" eval="1"/>
+			<field name="perm_write" eval="1"/>
+			<field name="perm_create" eval="0"/>
+			<field name="perm_unlink" eval="1"/>
+			<field name="domain_force">
+				[('create_uid','=',user.id)]
+			</field>
+		</record>
+	</data>
+</openerp>

@@ -8,3 +8,4 @@ class Category (models.Model):
     _sql_constraint = [('name_unique', 'UNIQUE(name)', 'The name must be unique')]
 
     name = fields.Char(string="Category", required=True)
+    user_id = fields.Many2one('res.users', default=lambda self: self.env.user, ondelete='cascade')

@@ -8,6 +8,7 @@ class Account (models.Model):
     name = fields.Char(string="Name", required=True)
     value = fields.Float(string="Value", compute='_get_value')
     main_account = fields.Boolean(string="Main account", default=False)
+    user_id = fields.Many2one('res.users', default=lambda self: self.env.user, ondelete='cascade')
 
     transaction_ids = fields.One2many(
         'account.transaction', 'account_id', string="Transactions")

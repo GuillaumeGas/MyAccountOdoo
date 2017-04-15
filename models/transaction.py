@@ -15,6 +15,7 @@ class Transaction (models.Model):
     value = fields.Float(string="Value", required=True)
     date = fields.Date(string="Date", required=True, default=fields.Date.today())
     validated = fields.Boolean(string="Validated", default=True)
+    user_id = fields.Many2one('res.users', default=lambda self: self.env.user, ondelete='cascade')
 
     account_id = fields.Many2one('account.account', string="Account",
                                  required=True, ondelete='cascade')

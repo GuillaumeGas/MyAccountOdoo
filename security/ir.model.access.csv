@@ -1,0 +1,5 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+account_access,account_access,model_account_account,account_group,1,1,1,1
+transaction_access,transaction_access,model_account_transaction,account_group,1,1,1,1
+category_access,category_access,model_account_category,account_group,1,1,1,1
+prediction_access,prediction_access,model_account_prediction,account_group,1,1,1,1

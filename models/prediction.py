@@ -11,6 +11,7 @@ class Prediction (models.Model):
 
     predict_value = fields.Float(string="Value", compute='_get_value')
     start_date = fields.Date(string="Start date", default=fields.Date.today())
+    user_id = fields.Many2one('res.users', default=lambda self: self.env.user, ondelete='cascade')
 
     transaction_id = fields.Many2one('account.transaction', ondelete='cascade')
 
