@@ -2,11 +2,13 @@
 <openerp>
   <data>
     <menuitem id="main_account_menu" name="MyAccount"/>
-    <menuitem id="account_menu_account" name="MyAccount" parent="main_account_menu"/>
 
-    <menuitem id="account_menu" name="Accounts" parent="account_menu_account" action="account_action"/>
-    <menuitem id="transaction_menu" name="Transactions" parent="account_menu_account" action="transaction_action"/>
-    <menuitem id="category_menu" name="Category" parent="account_menu_account" action="category_action"/>
-    <menuitem id="prediction_menu" name="Prediction" parent="account_menu_account" action="prediction_action"/>
+    <menuitem id="account_menu_main" name="MyAccount" parent="main_account_menu"/>
+    <menuitem id="transaction_menu" name="Transactions" parent="account_menu_main" action="transaction_action"/>
+    <menuitem id="prediction_menu" name="Predictions" parent="account_menu_main" action="prediction_action"/>
+
+    <menuitem id="account_menu_config" name="Config" parent="main_account_menu"/>
+    <menuitem id="account_menu" name="Accounts" parent="account_menu_config" action="account_action"/>
+    <menuitem id="category_menu" name="Category" parent="account_menu_config" action="category_action"/>
   </data>
 </openerp>

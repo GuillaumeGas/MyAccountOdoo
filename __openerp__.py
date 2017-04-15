@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'MyAccount',
-    'version': '0.1',
+    'version': '0.2',
     'category': 'custom',
     'author': 'Guillaume Gas',
     'website': 'https://guillaume.gas28.net',

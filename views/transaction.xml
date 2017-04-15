@@ -1,82 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
-  <data>
+	<data>
 
-    <!-- Transaction - Form view -->
-    <record model="ir.ui.view" id="transaction_form_view">
-      <field name="name">transaction.form</field>
-      <field name="model">account.transaction</field>
-      <field name="arch" type="xml">
-	<form string="Transaction">
-	  <sheet>
-	    <group>
-	      <field name="account_id"/>
-	      <field name="name"/>
-	      <field name="value"/>
-	    </group>
-	    <group>
-	      <field name="category_id"/>
-	      <field name="date"/>
-	      <field name="validated"/>
-	    </group>
-	  </sheet>
-	</form>
-      </field>
-    </record>
+		<!-- Transaction - Form view -->
+		<record model="ir.ui.view" id="transaction_form_view">
+			<field name="name">transaction.form</field>
+			<field name="model">account.transaction</field>
+			<field name="arch" type="xml">
+				<form string="Transaction">
+					<sheet>
+						<group>
+							<field name="account_id"/>
+							<field name="name"/>
+							<field name="value"/>
+						</group>
+						<group>
+							<field name="category_id"/>
+							<field name="date"/>
+							<field name="validated"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
 
-    <!-- Transaction - Tree view -->
-    <record model="ir.ui.view" id="transaction_tree_view">
-      <field name="name">transaction.tree</field>
-      <field name="model">account.transaction</field>
-      <field name="arch" type="xml">
-	<tree string="Transactions" colors="orange:validated==False;red:value &lt; 0;green:value>0" default_order="date">
-	  <field name="name"/>
-	  <field name="date"/>
-	  <field name="account_id"/>
-	  <field name="validated" invisible="True"/>
-	  <field name="value"/>
-	</tree>
-      </field>
-    </record>
+		<!-- Transaction - Tree view -->
+		<record model="ir.ui.view" id="transaction_tree_view">
+			<field name="name">transaction.tree</field>
+			<field name="model">account.transaction</field>
+			<field name="arch" type="xml">
+				<tree string="Transactions" colors="orange:validated==False;red:value &lt; 0;green:value>0" default_order="date">
+					<field name="name"/>
+					<field name="category_id"/>
+					<field name="date"/>
+					<field name="account_id"/>
+					<field name="validated" invisible="True"/>
+					<field name="value"/>
+				</tree>
+			</field>
+		</record>
 
-    <!-- Transaction - Search view -->
-    <record model="ir.ui.view" id="transaction_search_view">
-      <field name="name">transaction.search</field>
-      <field name="model">account.transaction</field>
-      <field name="arch" type="xml">
-	<search string="Transactions">
-	  <field name="name"/>
-	  <field name="category_id"/>
-	  <field name="account_id"/>
-	  <field name="date"/>
-	  <field name="validated"/>
-	  <filter name="filter_date" string="Transactions on current month"
-		  domain="[('date','>=',context_today().strftime('%%Y-%%m-01')),
-			  ('date','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01'))]"/>
-	</search>
-      </field>
-    </record>
+		<!-- Transaction - Search view -->
+		<record model="ir.ui.view" id="transaction_search_view">
+			<field name="name">transaction.search</field>
+			<field name="model">account.transaction</field>
+			<field name="arch" type="xml">
+				<search string="Transactions">
+					<field name="name"/>
+					<field name="category_id"/>
+					<field name="account_id"/>
+					<field name="date"/>
+					<field name="validated"/>
+					<filter name="filter_date" string="Transactions on current month"
+						domain="[('date','>=',context_today().strftime('%%Y-%%m-01')),
+						('date','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01'))]"/>
+						<!-- <filter name="filter_account" string="Transactions of main account" -->
+						<!-- 	  domain="[('account_id.main_account', '=' True)]"/> -->
+					</search>
+				</field>
+			</record>
 
-    <!-- Transaction - Graph view -->
-    <record model="ir.ui.view" id="transaction_graph_view">
-      <field name="name">transaction.graph</field>
-      <field name="model">account.transaction</field>
-      <field name="arch" type="xml">
-	<graph string="Transactions / Category" type="bar">
-	  <field name="category_id"/>
-	  <field name="value" type="measure"/>
-	</graph>
-      </field>
-    </record>
+			<!-- Transaction - Graph view -->
+			<record model="ir.ui.view" id="transaction_graph_view">
+				<field name="name">transaction.graph</field>
+				<field name="model">account.transaction</field>
+				<field name="arch" type="xml">
+					<graph string="Transactions / Category" type="bar">
+						<field name="category_id"/>
+						<field name="value" type="measure"/>
+					</graph>
+				</field>
+			</record>
 
-    <!-- Transaction - Action -->
-    <record model="ir.actions.act_window" id="transaction_action">
-      <field name="name">Transaction</field>
-      <field name="res_model">account.transaction</field>
-      <field name="view_type">form</field>
-      <field name="view_mode">tree,graph,form</field>
-      <field name="context">{'search_default_filter_date':1}</field>
-    </record>
+			<!-- Transaction - Action -->
+			<record model="ir.actions.act_window" id="transaction_action">
+				<field name="name">Transaction</field>
+				<field name="res_model">account.transaction</field>
+				<field name="view_type">form</field>
+				<field name="view_mode">tree,graph,form</field>
+				<field name="context">{'search_default_filter_date':1}</field>
+			</record>
 
-  </data>
-</openerp>
+		</data>
+	</openerp>

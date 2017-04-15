@@ -7,38 +7,41 @@
       <field name="name">account.form</field>
       <field name="model">account.account</field>
       <field name="arch" type="xml">
-	<form string="Account">
-	  <sheet>
-	    <group>
-	      <field name="name"/>
-	      <field name="value"/>
-	    </group>
-	    <group>
-	      <field name="transaction_ids"/>
-	    </group>
-	  </sheet>
-	</form>
-      </field>
-    </record>
+       <form string="Account">
+         <sheet>
+           <group>
+             <field name="name"/>
+             <field name="main_account"/>
+             <field name="value"/>
+           </group>
+           <group>
+             <field name="transaction_ids" readonly="True"/>
+           </group>
+         </sheet>
+       </form>
+     </field>
+   </record>
 
-    <!-- Account - Tree view -->
-    <record model="ir.ui.view" id="account_tree_view">
-      <field name="name">account.tree</field>
-      <field name="model">account.account</field>
-      <field name="arch" type="xml">
-	<tree string="Accounts" colors="red:value &lt; 0; green:value>0">
-	  <field name="name"/>
-	  <field name="value"/>
-	</tree>
-      </field>
-    </record>
+   <!-- Account - Tree view -->
+   <record model="ir.ui.view" id="account_tree_view">
+    <field name="name">account.tree</field>
+    <field name="model">account.account</field>
+    <field name="arch" type="xml">
+     <tree string="Accounts" colors="red:value &lt; 0; green:value>0">
+       <field name="name"/>
+       <field name="main_account"/>
+       <field name="value"/>
+     </tree>
+   </field>
+ </record>
 
-    <!-- Account - Action -->
-    <record model="ir.actions.act_window" id="account_action">
-      <field name="name">Account</field>
-      <field name="res_model">account.account</field>
-      <field name="view_type">form</field>
-    </record>
+ <!-- Account - Action -->
+ <record model="ir.actions.act_window" id="account_action">
+  <field name="name">Account</field>
+  <field name="res_model">account.account</field>
+  <field name="view_type">form</field>
+  <field name="view_mode">tree,form</field>
+</record>
 
-  </data>
+</data>
 </openerp>

@@ -23,30 +23,10 @@ class Transaction (models.Model):
 
     @api.model
     def create(self, values):
-        if (values['validated']):
-            account = self.env['account.account'].search([('id', '=', values['account_id'])])
-            account.value += values['value']
         res = super(Transaction, self).create(values)
         self.env['account.prediction'].create(
-            {'transaction_id': res.id, 'predict_value': res.value})
+            {'transaction_id': res.id})
         return res
-
-    @api.multi
-    def write(self, values):
-        if ('validated' in values):
-            if (values['validated']):
-                account = self.env['account.account'].search([('id', '=', self.account_id.id)])
-                value = self.value
-                if ('value' in values):
-                    value = values['value']
-                account.value += value
-        if ('value' in values):
-            if (('validated' in values and values['validated']) or
-                    ('validated' not in values and self.validated)):
-                transaction = self.env['account.transaction'].search([('id', '=', self.id)])
-                self.account_id.value -= transaction.value
-                self.account_id.value += values['value']
-        return super(Transaction, self).write(values)
 
     @api.onchange('date')
     def _change_date(self):
@@ -82,8 +62,8 @@ class Transaction (models.Model):
 
     @api.model
     def cron_mail(self):
-        nb_not_validated = len(self.env['account.transaction'].search(
-            [('validated', '=', 'False')]))
+        not_validated = self.get_list_invalidated()
+        nb_not_validated = len(not_validated)
 
         if nb_not_validated > 0:
             template = self.env['ir.model.data'].get_object(
@@ -98,6 +78,6 @@ class Transaction (models.Model):
         res_list = []
         today = fields.Date.today()
         for transac in invalidated_list:
-            if (fields.Date.from_string(transac.date) == fields.Date.from_string(today)):
+            if (fields.Date.from_string(transac.date) <= fields.Date.from_string(today)):
                 res_list.append(transac)
         return res_list
