@@ -7,32 +7,44 @@
       <field name="name">prediction.calendar</field>
       <field name="model">account.prediction</field>
       <field name="arch" type="xml">
-       <calendar string="Previsions" date_start="date" color="validated">
+        <calendar string="Previsions" date_start="date" color="validated">
+          <field name="name"/>
+          <field name="value"/>
+          <field name="predict_value"/>
+        </calendar>
+      </field>
+    </record>
 
-         <field name="name"/>
-         <field name="value"/>
-         <field name="predict_value"/>
-       </calendar>
-     </field>
-   </record>
+    <record model="ir.ui.view" id="prediction_tree_view">
+      <field name="name">prediction.tree</field>
+      <field name="model">account.prediction</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
 
-   <record model="ir.ui.view" id="prediction_tree_view">
-    <field name="name">prediction.tree</field>
-    <field name="model">account.prediction</field>
-    <field name="arch" type="xml">
-     <tree>
-       <field name="name"/>
-     </tree>
-   </field>
- </record>
+    <record model="ir.ui.view" id="prediction_search_view">
+      <field name="name">prediction.search</field>
+      <field name="model">account.prediction</field>
+      <field name="arch" type="xml">
+          <search string="Transactions">
+            <field name="transaction_id"/>
+            <filter name="filter_account" string="Transactions on main account"
+              domain="[('transaction_id.account_id.main_account','=','true')]"/>
+          </search>
+      </field>
+    </record>
 
- <!-- Prediction - Action -->
- <record model="ir.actions.act_window" id="prediction_action">
-  <field name="name">Prediction</field>
-  <field name="res_model">account.prediction</field>
-  <field name="view_type">form</field>
-  <field name="view_mode">calendar</field>
-</record>
+    <!-- Prediction - Action -->
+    <record model="ir.actions.act_window" id="prediction_action">
+      <field name="name">Prediction</field>
+      <field name="res_model">account.prediction</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">calendar</field>
+      <field name="context">{'search_default_filter_account':1}</field>
+    </record>
 
-</data>
+  </data>
 </openerp>
