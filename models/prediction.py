@@ -11,14 +11,13 @@ class Prediction (models.Model):
 
     predict_value = fields.Float(string="Value", compute='_get_value')
     start_date = fields.Date(string="Start date", default=fields.Date.today())
-    user_id = fields.Many2one('res.users', default=lambda self: self.env.user, ondelete='cascade')
-
+  
     transaction_id = fields.Many2one('account.transaction', ondelete='cascade')
 
     def _get_value(self):
         for r in self:
             r_date = fields.Date.from_string(r.date)
-            transac = self.env['account.prediction'].search([])
+            transac = self.env['account.prediction'].search([('transaction_id.account_id.main_account','=','true')])
             value = 0.0
             for t in transac:
                 t_date = fields.Date.from_string(t.date)
