@@ -70,7 +70,7 @@ class Transaction (models.Model):
                 'MyAccountOdoo', 'email_myaccount')
 
             # tmp !
-            template.email_to = "guillaume@gas-ntic.fr"
+            template.email_to = self.env.user.email
             template.send_mail(res_id=self.env['account.transaction'].search([], limit=1).id)
 
     def get_list_invalidated(self):
